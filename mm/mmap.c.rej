@@ -1,0 +1,11 @@
+--- mm/mmap.c
++++ mm/mmap.c
+@@ -2476,7 +2476,7 @@
+ 	if (new->vm_ops && new->vm_ops->close)
+ 		new->vm_ops->close(new);
+ 	if (new->vm_file)
+-		fput(new->vm_file);
++		vma_fput(new);
+ 	unlink_anon_vmas(new);
+  out_free_mpol:
+ 	mpol_put(vma_policy(new));
